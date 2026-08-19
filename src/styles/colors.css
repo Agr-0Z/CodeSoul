@@ -1,0 +1,44 @@
+:root,
+html[data-mode="light"] {
+  --primary: #eb5c20;
+  --secondary: #71717a;
+  --text: #1c1c1e;
+  --link: #c44a12;
+  --on-primary: #ffffff;
+  --background: #eef2f6;
+  --glass: rgba(255, 255, 255, 0.62);
+  --pill: rgba(255, 255, 255, 0.78);
+  --border: rgba(255, 255, 255, 0.7);
+  --radius-card: 8px;
+  --motion: 0.3s ease;
+  --theme-toggle-bg: #0c0d12;
+  --theme-toggle-fg: #f4f4f5;
+  --tag: color-mix(in srgb, var(--primary) 18%, var(--on-primary));
+  --tag-border: color-mix(in srgb, var(--primary) 42%, transparent);
+  --tag-fg: var(--link);
+  --nav-offset: 72px;
+  --section-gap: 32px;
+}
+
+html[data-mode="dark"] {
+  --primary: #eb5c20;
+  --secondary: #a1a1aa;
+  --text: #f4f4f5;
+  --link: #ff9a6a;
+  --on-primary: #ffffff;
+  --background: #0c0d12;
+  --glass: rgba(22, 24, 32, 0.55);
+  --pill: rgba(22, 24, 32, 0.72);
+  --border: rgba(255, 255, 255, 0.14);
+  --theme-toggle-bg: #eef2f6;
+  --theme-toggle-fg: #1c1c1e;
+  --tag: color-mix(in srgb, var(--primary) 26%, transparent);
+  --tag-border: color-mix(in srgb, var(--primary) 48%, transparent);
+  --tag-fg: var(--link);
+}
+
+@media (--media-lg) {
+  :root {
+    --radius-card: 16px;
+  }
+}

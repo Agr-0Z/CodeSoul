@@ -1,0 +1,21 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+
+# next
+/.next/
+/out/
+.vercel
+
+# debug
+npm-debug.log*
+
+# env
+.env*
+!.env.example
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

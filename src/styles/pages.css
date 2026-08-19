@@ -1,0 +1,156 @@
+main:not(:has(.page-section)) {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-top: calc(var(--nav-offset) + var(--section-gap));
+  padding-bottom: 64px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.page-section {
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  scroll-margin-top: 0;
+  padding-top: calc(var(--nav-offset) + var(--section-gap));
+  padding-bottom: 32px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (--media-sm) {
+  main:not(:has(.page-section)),
+  .page-section {
+    padding-left: 240px;
+    padding-right: 240px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (--media-lg) {
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+}
+.page-header {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.page-header-center {
+  justify-items: center;
+  text-align: center;
+}
+
+.chip {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: var(--codesoul-subtitle-xs);
+  transition:
+    background-color var(--motion),
+    color var(--motion);
+}
+
+.about-grid,
+.card-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.stat-value {
+  margin: 0 0 8px;
+  color: var(--primary);
+}
+
+.card-grid {
+  grid-template-columns: 1fr;
+}
+
+.project-grid {
+  grid-template-columns: 1fr;
+}
+
+.project-repo {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.project-repo-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.project-repo code {
+  font-family: var(--codesoul-font-mono), ui-monospace, monospace;
+  color: inherit;
+  word-break: break-all;
+}
+
+.stack {
+  display: grid;
+  gap: 12px;
+}
+
+.post-list {
+  display: grid;
+  gap: 16px;
+}
+
+.post-list a {
+  text-decoration: none;
+}
+
+.tag-list,
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-tags {
+  margin-top: 12px;
+}
+
+.tag {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--tag-border);
+  background: var(--tag);
+  color: var(--tag-fg);
+}
+
+.not-found-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}

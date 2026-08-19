@@ -1,0 +1,196 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition:
+    color var(--motion),
+    background-color var(--motion),
+    opacity var(--motion),
+    border-color var(--motion);
+}
+
+a:hover {
+  opacity: 0.82;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+html {
+  transition:
+    background-color var(--motion),
+    color var(--motion);
+}
+
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  transition: background var(--motion);
+  background:
+    radial-gradient(ellipse 48% 42% at 18% 12%, rgba(235, 92, 32, 0.28), transparent 58%),
+    radial-gradient(ellipse 38% 40% at 88% 18%, rgba(196, 181, 253, 0.34), transparent 52%),
+    radial-gradient(ellipse 40% 30% at 78% 88%, rgba(235, 92, 32, 0.2), transparent 56%),
+    var(--background);
+}
+
+html[data-mode="dark"] .aurora {
+  background:
+    radial-gradient(ellipse 48% 42% at 18% 12%, rgba(235, 92, 32, 0.22), transparent 58%),
+    radial-gradient(ellipse 38% 40% at 88% 18%, rgba(167, 139, 250, 0.16), transparent 52%),
+    radial-gradient(ellipse 40% 30% at 78% 88%, rgba(235, 92, 32, 0.16), transparent 56%),
+    var(--background);
+}
+
+.shell {
+  min-height: 100vh;
+  padding: 0;
+}
+
+.shell-inner {
+  width: 100%;
+}
+
+.pill-nav {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: calc(100% - 40px);
+  gap: 4px 6px;
+  padding: 8px 10px 8px 16px;
+  margin: 0;
+  background: var(--pill);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  backdrop-filter: blur(18px) saturate(140%);
+  transition:
+    background-color var(--motion),
+    border-color var(--motion);
+}
+
+.pill-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  border-radius: 999px;
+  background: var(--primary);
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    transform 0.3s ease,
+    width 0.3s ease,
+    height 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.pill-indicator.is-ready {
+  opacity: 1;
+}
+
+.pill-nav a {
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: transparent;
+  transition:
+    color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.pill-nav a:hover {
+  opacity: 1;
+}
+
+.pill-nav a.pill-logo {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.pill-nav a[aria-current="page"] {
+  color: var(--on-primary);
+  background: transparent;
+}
+
+.theme-toggle {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--theme-toggle-bg);
+  color: var(--theme-toggle-fg);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background-color var(--motion),
+    color var(--motion),
+    opacity var(--motion),
+    transform var(--motion);
+}
+
+.theme-toggle-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  overflow: visible;
+  shape-rendering: geometricPrecision;
+}
+
+.theme-toggle:hover {
+  opacity: 0.88;
+  transform: scale(1.04);
+}
+
+.glass-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  backdrop-filter: blur(18px) saturate(140%);
+  padding: 28px;
+  transition:
+    background-color var(--motion),
+    border-color var(--motion),
+    border-radius var(--motion);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion: 0s;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,84 @@
+:root {
+  --codesoul-headline-h1: clamp(2rem, 4vw, 3rem);
+  --codesoul-headline-h2: clamp(1.75rem, 3vw, 2.25rem);
+  --codesoul-headline-h3: clamp(1.5rem, 2.5vw, 1.75rem);
+  --codesoul-headline-h4: clamp(1.25rem, 2vw, 1.375rem);
+  --codesoul-headline-h5: 1.125rem;
+  --codesoul-headline-h6: 1rem;
+  --codesoul-subtitle-lg: 1.125rem;
+  --codesoul-subtitle-md: 1rem;
+  --codesoul-subtitle-sm: 0.875rem;
+  --codesoul-subtitle-xs: 0.75rem;
+}
+
+html {
+  font-family: var(--codesoul-font-sans), "PingFang SC", "Hiragino Sans GB", sans-serif;
+  color: var(--text);
+  background: var(--background);
+}
+
+body {
+  font-family: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--codesoul-font-sans), "PingFang SC", "Hiragino Sans GB", sans-serif;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: var(--codesoul-headline-h1);
+}
+h2 {
+  font-size: var(--codesoul-headline-h2);
+}
+h3 {
+  font-size: var(--codesoul-headline-h3);
+}
+h4 {
+  font-size: var(--codesoul-headline-h4);
+}
+h5 {
+  font-size: var(--codesoul-headline-h5);
+}
+h6 {
+  font-size: var(--codesoul-headline-h6);
+}
+
+code,
+pre,
+kbd {
+  font-family: var(--codesoul-font-mono), ui-monospace, monospace;
+}
+
+.codesoul-subtitle-lg,
+.codesoul-subtitle-md,
+.codesoul-subtitle-sm,
+.codesoul-subtitle-xs {
+  margin: 0;
+  color: var(--secondary);
+  font-family: var(--codesoul-font-sans), "PingFang SC", "Hiragino Sans GB", sans-serif;
+  line-height: 1.6;
+}
+
+.codesoul-subtitle-lg {
+  font-size: var(--codesoul-subtitle-lg);
+}
+.codesoul-subtitle-md {
+  font-size: var(--codesoul-subtitle-md);
+}
+.codesoul-subtitle-sm {
+  font-size: var(--codesoul-subtitle-sm);
+}
+.codesoul-subtitle-xs {
+  font-size: var(--codesoul-subtitle-xs);
+}

@@ -1,0 +1,35 @@
+{
+  "name": "codesoul",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "eslint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "tsx src/lib/formatDate.test.ts && NODE_ENV=production tsx src/lib/posts.test.ts"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "next": "^15.5.0",
+    "next-mdx-remote": "^5.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@csstools/postcss-global-data": "^3.0.0",
+    "@eslint/eslintrc": "^3.3.0",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "eslint": "^9.25.0",
+    "eslint-config-next": "^15.5.0",
+    "eslint-config-prettier": "^10.1.8",
+    "postcss": "^8.5.0",
+    "postcss-custom-media": "^11.0.0",
+    "prettier": "^3.9.6",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0"
+  }
+}
