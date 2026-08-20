@@ -79,6 +79,13 @@ export const site = {
   ] satisfies Skill[],
   projects: [
     {
+      name: "Ascend",
+      summary:
+        "本地优先的 AI 公考学习工作台。单用户、无账号，计划、时政、考点与模块打卡已可用；数据/统计仍为占位。目前完成第一期。",
+      tags: ["TypeScript", "Next.js", "Prisma", "SQLite"],
+      url: "https://github.com/Agr-0Z/ascend",
+    },
+    {
       name: "灵枢·智搜",
       summary: "本地优先的典籍方剂检索器。无后端，语料来自仓库 data/，检索不依赖网络。",
       tags: ["TypeScript", "Vite", "Vitest", "Python"],
