@@ -74,20 +74,24 @@ export function HomeSections({ posts }: { posts: PostMeta[] }) {
         </header>
         <div className="post-list">
           {posts.map((post) => (
-            <article key={post.slug} className="glass-card">
-              <p className="codesoul-subtitle-sm">{formatDate(post.date)}</p>
-              <h3>
-                <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-              </h3>
-              <p className="codesoul-subtitle-md">{post.description}</p>
-              <div className="post-tags">
-                {post.tags.map((tag) => (
-                  <span key={tag} className="tag codesoul-subtitle-xs">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </article>
+            <Link key={post.slug} href={`/blog/${post.slug}`} className="post-card">
+              <article className="glass-card stack">
+                <h3>{post.title}</h3>
+                <p className="codesoul-subtitle-md">{post.description}</p>
+                <div className="post-card-meta">
+                  <div className="post-tags">
+                    {post.tags.map((tag) => (
+                      <span key={tag} className="tag codesoul-subtitle-xs">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <time className="post-date codesoul-subtitle-sm" dateTime={post.date}>
+                    {formatDate(post.date)}
+                  </time>
+                </div>
+              </article>
+            </Link>
           ))}
         </div>
       </section>

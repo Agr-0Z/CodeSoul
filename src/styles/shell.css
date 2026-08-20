@@ -193,7 +193,8 @@ html[data-mode="dark"] .aurora {
 @media (--media-sm) {
   .pill-nav {
     justify-content: flex-start;
-    width: calc(100% - 40px);
+    width: calc(100% - 48px);
+    max-width: calc(100% - 48px);
   }
 
   .pill-indicator {
