@@ -6,16 +6,52 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { NAV_LINKS, scrollToSection, type SectionId } from "@/lib/scroll";
 import { ThemeToggle } from "./ThemeToggle";
 
+const NAV_LINKS_ID = "pill-nav-links";
+const DESKTOP_NAV = "(min-width: 769px)";
+
 type Indicator = { x: number; y: number; w: number; h: number };
+
+function MenuIcon() {
+  return (
+    <svg className="pill-menu-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        d="M4 7h16M4 12h16M4 17h16"
+      />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg className="pill-menu-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        d="M6 6l12 12M18 6 6 18"
+      />
+    </svg>
+  );
+}
 
 export function Nav() {
   const pathname = usePathname();
   const onHome = pathname === "/";
   const [active, setActive] = useState<SectionId>("about");
   const [indicator, setIndicator] = useState<Indicator | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const scrolling = useRef(false);
   const navRef = useRef<HTMLElement>(null);
   const itemRefs = useRef<Partial<Record<SectionId, HTMLAnchorElement | null>>>({});
+
+  function closeMenu() {
+    setMenuOpen(false);
+  }
 
   function goTo(id: SectionId) {
     scrolling.current = true;
@@ -54,6 +90,34 @@ export function Nav() {
     return () => observer.disconnect();
   }, [onHome]);
 
+  useEffect(() => {
+    const media = window.matchMedia(DESKTOP_NAV);
+    const onChange = () => {
+      if (media.matches) closeMenu();
+    };
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeMenu();
+    };
+    const onPointerDown = (event: PointerEvent) => {
+      if (navRef.current?.contains(event.target as Node)) return;
+      closeMenu();
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [menuOpen]);
+
   const currentId: SectionId | null = onHome
     ? active
     : pathname.startsWith("/blog")
@@ -71,7 +135,7 @@ export function Nav() {
 
     const updateIndicator = () => {
       const item = currentId ? itemRefs.current[currentId] : null;
-      if (!item) {
+      if (!item || item.offsetWidth === 0 || item.offsetHeight === 0) {
         setIndicator(null);
         return;
       }
@@ -98,7 +162,7 @@ export function Nav() {
       observer.disconnect();
       window.removeEventListener("resize", update);
     };
-  }, [currentId, pathname]);
+  }, [currentId, pathname, menuOpen]);
 
   return (
     <nav ref={navRef} className="pill-nav" aria-label="主导航">
@@ -119,6 +183,7 @@ export function Nav() {
         href="/#about"
         className="pill-logo"
         onClick={(event) => {
+          closeMenu();
           if (!onHome) return;
           event.preventDefault();
           goTo("about");
@@ -126,26 +191,39 @@ export function Nav() {
       >
         CodeSoul
       </Link>
-      {NAV_LINKS.map((link) => {
-        const current = currentId === link.id;
-        return (
-          <Link
-            key={link.id}
-            href={`/#${link.id}`}
-            aria-current={current ? "page" : undefined}
-            ref={(node) => {
-              itemRefs.current[link.id] = node;
-            }}
-            onClick={(event) => {
-              if (!onHome) return;
-              event.preventDefault();
-              goTo(link.id);
-            }}
-          >
-            {link.label}
-          </Link>
-        );
-      })}
+      <div id={NAV_LINKS_ID} className={menuOpen ? "pill-nav-links is-open" : "pill-nav-links"}>
+        {NAV_LINKS.map((link) => {
+          const current = currentId === link.id;
+          return (
+            <Link
+              key={link.id}
+              href={`/#${link.id}`}
+              aria-current={current ? "page" : undefined}
+              ref={(node) => {
+                itemRefs.current[link.id] = node;
+              }}
+              onClick={(event) => {
+                closeMenu();
+                if (!onHome) return;
+                event.preventDefault();
+                goTo(link.id);
+              }}
+            >
+              {link.label}
+            </Link>
+          );
+        })}
+      </div>
+      <button
+        type="button"
+        className="pill-menu-btn"
+        aria-label={menuOpen ? "关闭菜单" : "打开菜单"}
+        aria-expanded={menuOpen}
+        aria-controls={NAV_LINKS_ID}
+        onClick={() => setMenuOpen((open) => !open)}
+      >
+        {menuOpen ? <CloseIcon /> : <MenuIcon />}
+      </button>
       <ThemeToggle />
     </nav>
   );

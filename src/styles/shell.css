@@ -75,7 +75,7 @@ html[data-mode="dark"] .aurora {
   transform: translateX(-50%);
   z-index: 10;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
   width: fit-content;
@@ -93,6 +93,7 @@ html[data-mode="dark"] .aurora {
 }
 
 .pill-indicator {
+  display: block;
   position: absolute;
   left: 0;
   top: 0;
@@ -112,9 +113,30 @@ html[data-mode="dark"] .aurora {
   opacity: 1;
 }
 
+.pill-nav-links {
+  display: flex;
+  position: static;
+  overflow: visible;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px 6px;
+  padding: 0;
+  margin: 0;
+  max-height: none;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  backdrop-filter: none;
+}
+
 .pill-nav a {
   position: relative;
   z-index: 1;
+  flex-shrink: 0;
+  white-space: nowrap;
   text-decoration: none;
   color: var(--text);
   padding: 8px 12px;
@@ -132,11 +154,97 @@ html[data-mode="dark"] .aurora {
 .pill-nav a.pill-logo {
   font-weight: 700;
   color: var(--primary);
+  flex-shrink: 0;
 }
 
-.pill-nav a[aria-current="page"] {
+.pill-nav-links a[aria-current="page"] {
   color: var(--on-primary);
   background: transparent;
+}
+
+.pill-menu-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin-left: auto;
+  border: 0;
+  border-radius: 50%;
+  display: none;
+  place-items: center;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.pill-menu-icon {
+  width: 32px;
+  height: 32px;
+  display: block;
+  overflow: visible;
+}
+
+.pill-menu-btn:hover {
+  opacity: 0.88;
+}
+
+@media (--media-sm) {
+  .pill-nav {
+    justify-content: flex-start;
+    width: calc(100% - 40px);
+  }
+
+  .pill-indicator {
+    display: none;
+  }
+
+  .pill-nav-links {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 0 8px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    background: var(--pill);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    backdrop-filter: blur(18px) saturate(140%);
+    transition:
+      max-height 0.6s ease,
+      opacity 0.6s ease,
+      padding 0.6s ease,
+      visibility 0s linear 0.6s;
+  }
+
+  .pill-nav-links.is-open {
+    max-height: 400px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    padding: 8px;
+    transition:
+      max-height 0.6s ease,
+      opacity 0.6s ease,
+      padding 0.6s ease,
+      visibility 0s;
+  }
+
+  .pill-nav-links a[aria-current="page"] {
+    background: var(--primary);
+  }
+
+  .pill-menu-btn {
+    display: grid;
+  }
 }
 
 .theme-toggle {

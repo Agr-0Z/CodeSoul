@@ -9,7 +9,7 @@ html[data-mode="light"] {
   --glass: rgba(255, 255, 255, 0.62);
   --pill: rgba(255, 255, 255, 0.78);
   --border: rgba(255, 255, 255, 0.7);
-  --radius-card: 8px;
+  --radius-card: 16px;
   --motion: 0.3s ease;
   --theme-toggle-bg: #0c0d12;
   --theme-toggle-fg: #f4f4f5;
@@ -37,8 +37,8 @@ html[data-mode="dark"] {
   --tag-fg: var(--link);
 }
 
-@media (--media-lg) {
+@media (--media-sm) {
   :root {
-    --radius-card: 16px;
+    --radius-card: 8px;
   }
 }

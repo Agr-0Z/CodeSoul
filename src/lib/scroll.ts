@@ -11,7 +11,9 @@ export const NAV_LINKS: { id: SectionId; label: string }[] = [
 ];
 
 function sectionScrollTop(el: HTMLElement): number {
-  return el.getBoundingClientRect().top + window.scrollY;
+  const padding =
+    Number.parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+  return el.getBoundingClientRect().top + window.scrollY - padding;
 }
 
 export function scrollToSection(id: string, duration = 600): void {

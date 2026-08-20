@@ -45,20 +45,36 @@ export const site = {
         "Next.js",
         "Tailwind CSS",
         "Webpack",
-        "Html",
+        "HTML",
+        "Sass",
+        "PostCSS",
+        "CSS Modules",
+        "MDX",
+        "Redux",
+        "React Router",
+        "响应式",
+        "SEO",
       ],
     },
     {
       name: "后端",
-      tags: ["Node.js", "Python"],
+      tags: ["Node.js", "Python", "REST API", "MySQL", "Redis", "WebSocket"],
     },
     {
       name: "代码管理",
-      tags: ["Git", "GitHub", "GitLab"],
+      tags: ["Git", "GitHub", "GitLab", "Pull Request", "Code Review"],
     },
     {
       name: "工程化",
-      tags: ["Next.js", "Markdown", "Vercel", "Docker"],
+      tags: ["Markdown", "ESLint", "Prettier", "npm", "pnpm", "yarn", "tsconfig"],
+    },
+    {
+      name: "测试",
+      tags: ["Jest", "Storybook"],
+    },
+    {
+      name: "部署上线",
+      tags: ["Vercel", "Docker"],
     },
   ] satisfies Skill[],
   projects: [
@@ -69,12 +85,16 @@ export const site = {
       url: "https://github.com/Agr-0Z/LingShuOracle",
     },
   ] satisfies Project[],
+  resume: {
+    title: "简历",
+    subtitle: "PDF 预览，也可下载。",
+    download: "下载 PDF",
+    missing: "简历文件还没放进来。把 PDF 放到下面这个路径，刷新即可。",
+    fileHint: "public/resume.pdf",
+  },
   contact: {
     title: "打个招呼",
     subtitle: "GitHub 或邮箱即可。",
-    body: [
-      "GitHub：Agr-0Z",
-      "邮箱：Mr_ZouDingGuo@163.com"
-    ],
+    body: ["GitHub：Agr-0Z", "邮箱：Mr_ZouDingGuo@163.com"],
   },
 };

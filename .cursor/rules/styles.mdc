@@ -9,5 +9,5 @@ alwaysApply: false
 - 布局、圆角用 `px`；字号用 `rem` / `clamp()`。不要写死 `html { font-size: 16px }`。
 - Token 用正确英文全称。颜色用 `var(--primary)` `var(--secondary)` `var(--text)` `var(--link)` `var(--on-primary)`，不要写裸色值。
 - 标题样式绑 `h1`–`h6`，不要挂 `.codesoul-headline-*`。副标题、日期、标签挂 `.codesoul-subtitle-lg|md|sm|xs`。不要在页面 CSS 写 `font-size`。
-- 端点只定义在 `src/styles/media.css`（`@custom-media`）。样式里写 `@media (--media-sm)` / `@media (--media-lg)` / `@media (--media-xl)`，禁止裸 `min-width: 640px`。不要用 `media.ts`。
+- 端点只定义在 `src/styles/media.css`（`@custom-media`）。样式里写 `@media (--media-sm)` / `@media (--media-lg)` / `@media (--media-xl)`，禁止裸宽度查询。不要用 `media.ts`。
 - 公共文件放 `src/styles/`，由 `index.css` 引入。

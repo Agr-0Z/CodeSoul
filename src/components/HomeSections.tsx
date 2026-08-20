@@ -8,7 +8,19 @@ export function HomeSections({ posts }: { posts: PostMeta[] }) {
     <>
       <section id="about" className="page-section">
         <header className="page-header page-header-center">
-          <span className="chip">{site.about.chip}</span>
+          <Link href="/resume" className="chip">
+            {site.about.chip}
+            <svg className="chip-arrow" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 3.5 11 8l-5 4.5"
+              />
+            </svg>
+          </Link>
           <h1>{site.about.title}</h1>
           <p className="codesoul-subtitle-lg">{site.about.subtitle}</p>
         </header>
