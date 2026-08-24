@@ -2,6 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 
+export type PostLayout = "article" | "skills";
+
 export type PostMeta = {
   slug: string;
   title: string;
@@ -9,6 +11,7 @@ export type PostMeta = {
   description: string;
   tags: string[];
   draft: boolean;
+  layout: PostLayout;
 };
 
 export type Post = PostMeta & {
@@ -46,6 +49,7 @@ export function parsePostSource(filename: string, raw: string): Post {
   if (!Array.isArray(data.tags) || data.tags.length === 0) {
     throw new Error(`${filename} 的 tags 必须是非空数组`);
   }
+  const layout = parseLayout(data.layout, filename);
   const slug = typeof data.slug === "string" && data.slug ? data.slug : slugFromFilename(filename);
   return {
     slug,
@@ -54,8 +58,15 @@ export function parsePostSource(filename: string, raw: string): Post {
     description: String(data.description),
     tags: data.tags.map(String),
     draft: Boolean(data.draft),
+    layout,
     content,
   };
+}
+
+function parseLayout(value: unknown, filename: string): PostLayout {
+  if (value == null || value === "article") return "article";
+  if (value === "skills") return "skills";
+  throw new Error(`${filename} 的 layout 必须是 article 或 skills：${String(value)}`);
 }
 
 function listMdxFiles(): string[] {
@@ -83,6 +94,7 @@ export function getAllPosts(options?: { includeDrafts?: boolean }): PostMeta[] {
       description: post.description,
       tags: post.tags,
       draft: post.draft,
+      layout: post.layout,
     }));
 }
 

@@ -1,6 +1,9 @@
 .prose {
   width: min(75ch, 100%);
+  max-width: 100%;
+  min-width: 0;
   line-height: 1.75;
+  overflow-wrap: break-word;
 }
 
 .prose > * + * {
@@ -35,10 +38,12 @@
   padding: 0.1em 0.35em;
   border-radius: 6px;
   background: var(--glass);
+  overflow-wrap: anywhere;
 }
 
 .prose pre {
   overflow-x: auto;
+  max-width: 100%;
   padding: 16px 18px;
   border-radius: 16px;
   background: var(--glass);
@@ -53,6 +58,22 @@
   max-width: 100%;
   height: auto;
   border-radius: 16px;
+}
+
+.prose table {
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.prose th,
+.prose td {
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+  overflow-wrap: anywhere;
 }
 
 .prose hr {

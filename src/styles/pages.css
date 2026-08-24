@@ -6,6 +6,7 @@ main {
   box-sizing: border-box;
   width: 1200px;
   max-width: 100%;
+  min-width: 0;
   margin-left: auto;
   margin-right: auto;
   padding-top: 0;
@@ -149,6 +150,25 @@ a.chip:hover .chip-arrow {
   .project-repo {
     justify-self: start;
   }
+
+  .skill-panel-head {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "title actions"
+      "name name";
+  }
+
+  .skill-panel-head h2 {
+    grid-area: title;
+  }
+
+  .skill-panel-head .skill-name {
+    grid-area: name;
+  }
+
+  .skill-panel-actions {
+    grid-area: actions;
+  }
 }
 
 .project-repo-icon {
@@ -238,12 +258,188 @@ a.chip:hover .chip-arrow {
   margin: 0 0 16px;
 }
 
-.resume-frame {
-  display: block;
+.skill-intro {
+  margin-bottom: 28px;
+}
+
+.skill-index {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.skill-index a.tag {
+  text-decoration: none;
+}
+
+.skill-stack {
+  display: grid;
+  gap: 28px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.skill-panel {
+  min-width: 0;
+  max-width: 100%;
+  scroll-margin-top: calc(var(--nav-offset) + var(--section-gap));
+}
+
+.skill-panel-summary {
+  position: relative;
+  min-width: 0;
+}
+
+.skill-panel-trigger {
+  appearance: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.skill-panel-head > .skill-panel-trigger {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+}
+
+.skill-panel-head > *:not(.skill-panel-trigger),
+.skill-panel-summary > *:not(.skill-panel-trigger) {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.skill-panel-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  min-width: 0;
+  margin-bottom: 12px;
+}
+
+.skill-panel-head h2 {
+  min-width: 0;
+  justify-self: start;
+  overflow-wrap: anywhere;
+}
+
+.skill-panel-head .skill-name {
+  min-width: 0;
+  justify-self: center;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.skill-panel.is-open .skill-panel-head {
+  position: sticky;
+  top: var(--nav-offset);
+  z-index: 4;
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  transition:
+    background-color 0.3s ease,
+    padding 0.3s ease,
+    border-radius 0.3s ease;
+}
+
+.skill-panel.is-open .skill-panel-head.is-stuck {
+  background-color: var(--glass);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 1px 0 var(--border);
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.skill-panel-actions {
+  pointer-events: auto;
+  z-index: 2;
+  flex-shrink: 0;
+  justify-self: end;
+}
+
+.skill-panel-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  min-width: 0;
+  transition: grid-template-rows 0.6s ease;
+}
+
+.skill-panel.is-open .skill-panel-body {
+  grid-template-rows: 1fr;
+}
+
+.skill-panel-body-inner {
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.skill-name code {
+  color: var(--secondary);
+}
+
+.skill-download {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--link);
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  flex-shrink: 0;
+  transition: opacity var(--motion);
+}
+
+.skill-download:hover {
+  opacity: 0.82;
+}
+
+.skill-panel .prose {
   width: 100%;
-  min-height: 70vh;
-  height: calc(100svh - var(--nav-offset) - 180px);
+  min-width: 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.skill-panel .prose pre {
+  overflow-x: hidden;
+  white-space: pre-wrap;
+}
+
+.skill-panel .codesoul-subtitle-md {
+  overflow-wrap: anywhere;
+}
+
+.skill-panel .prose > *:first-child {
+  margin-top: 0;
+}
+
+.resume-viewer {
+  display: grid;
+  gap: 16px;
+}
+
+.resume-page {
+  width: 100%;
+  overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
   background: var(--glass);
+}
+
+.resume-page canvas {
+  display: block;
+  width: 100%;
+  height: auto;
 }

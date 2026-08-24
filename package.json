@@ -8,12 +8,13 @@
     "lint": "eslint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "tsx src/lib/formatDate.test.ts && NODE_ENV=production tsx src/lib/posts.test.ts && tsx src/lib/resume.test.ts"
+    "test": "tsx src/lib/formatDate.test.ts && NODE_ENV=production tsx src/lib/posts.test.ts && tsx src/lib/resume.test.ts && NODE_ENV=production tsx src/lib/agentSkills.test.ts"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
     "next": "^15.5.0",
     "next-mdx-remote": "^6.0.0",
+    "pdfjs-dist": "^6.2.108",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

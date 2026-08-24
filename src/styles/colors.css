@@ -7,8 +7,9 @@ html[data-mode="light"] {
   --on-primary: #ffffff;
   --background: #eef2f6;
   --glass: rgba(255, 255, 255, 0.62);
-  --pill: rgba(255, 255, 255, 0.78);
+  --pill: rgba(255, 255, 255, 1);
   --border: rgba(255, 255, 255, 0.7);
+  --pill-border: color-mix(in srgb, var(--text) 12%, transparent);
   --radius-card: 16px;
   --motion: 0.3s ease;
   --theme-toggle-bg: #0c0d12;
@@ -28,8 +29,9 @@ html[data-mode="dark"] {
   --on-primary: #ffffff;
   --background: #0c0d12;
   --glass: rgba(22, 24, 32, 0.55);
-  --pill: rgba(22, 24, 32, 0.72);
+  --pill: rgba(22, 24, 32, 1);
   --border: rgba(255, 255, 255, 0.14);
+  --pill-border: color-mix(in srgb, var(--on-primary) 16%, transparent);
   --theme-toggle-bg: #eef2f6;
   --theme-toggle-fg: #1c1c1e;
   --tag: color-mix(in srgb, var(--primary) 26%, transparent);

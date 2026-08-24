@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ResumeViewer } from "@/components/ResumeViewer";
 import { Shell } from "@/components/Shell";
 import { site } from "@/content/site";
 import { hasResumePdf, RESUME_PDF_FILENAME, RESUME_PDF_HREF } from "@/lib/resume";
@@ -24,7 +25,7 @@ export default function ResumePage() {
               {site.resume.download}
             </a>
           </p>
-          <iframe className="resume-frame" src={RESUME_PDF_HREF} title={site.resume.title} />
+          <ResumeViewer src={RESUME_PDF_HREF} />
         </>
       ) : (
         <article className="glass-card stack">

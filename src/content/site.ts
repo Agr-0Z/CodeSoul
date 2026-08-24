@@ -96,6 +96,8 @@ export const site = {
     title: "简历",
     subtitle: "PDF 预览，也可下载。",
     download: "下载 PDF",
+    loading: "正在加载简历…",
+    error: "预览加载失败，请下载 PDF 查看。",
     missing: "简历文件还没放进来。把 PDF 放到下面这个路径，刷新即可。",
     fileHint: "public/resume.pdf",
   },
