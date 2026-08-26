@@ -1,6 +1,6 @@
-import { MDXRemote } from "next-mdx-remote/rsc";
 import type { AgentSkill } from "@/lib/agentSkills";
 import type { Post } from "@/lib/posts";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { SkillDownloadButton } from "./SkillDownloadButton";
 import { SkillPanel } from "./SkillPanel";
 import { SkillStack } from "./SkillStack";
@@ -18,7 +18,6 @@ export function SkillsCatalog({ post, skills }: { post: Post; skills: AgentSkill
 
       {skills.length > 1 ? (
         <nav className="skill-index" aria-label="本页技能">
-          <p className="codesoul-subtitle-sm">本页</p>
           <ul className="post-tags">
             {skills.map((skill) => (
               <li key={skill.slug}>

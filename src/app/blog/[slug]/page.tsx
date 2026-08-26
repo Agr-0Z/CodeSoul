@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { LinksCatalog } from "@/components/LinksCatalog";
 import { Shell } from "@/components/Shell";
 import { SkillsCatalog } from "@/components/SkillsCatalog";
 import { getAllAgentSkills } from "@/lib/agentSkills";
@@ -45,6 +46,8 @@ export default async function PostPage({ params }: { params: Params }) {
       </header>
       {post.layout === "skills" ? (
         <SkillsCatalog post={post} skills={getAllAgentSkills({ includeDrafts: false })} />
+      ) : post.layout === "links" ? (
+        <LinksCatalog post={post} />
       ) : (
         <article className="prose">
           <MDXRemote source={post.content} />

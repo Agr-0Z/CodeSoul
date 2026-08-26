@@ -30,7 +30,7 @@ export const site = {
   },
   stats: [
     { value: "5+", label: "年经验" },
-    { value: "5", label: "项目构建" },
+    { value: "5+", label: "项目构建" },
     { value: "100K+", label: "行代码" },
     { value: "10+", label: "技术栈" },
   ] satisfies Stat[],

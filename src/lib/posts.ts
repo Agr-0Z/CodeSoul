@@ -2,7 +2,14 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 
-export type PostLayout = "article" | "skills";
+export type PostLayout = "article" | "skills" | "links";
+
+export type LinkItem = {
+  name: string;
+  url: string;
+  description: string;
+  category: string;
+};
 
 export type PostMeta = {
   slug: string;
@@ -16,6 +23,7 @@ export type PostMeta = {
 
 export type Post = PostMeta & {
   content: string;
+  links?: LinkItem[];
 };
 
 const postsDir = path.join(process.cwd(), "content/posts");
@@ -51,6 +59,7 @@ export function parsePostSource(filename: string, raw: string): Post {
   }
   const layout = parseLayout(data.layout, filename);
   const slug = typeof data.slug === "string" && data.slug ? data.slug : slugFromFilename(filename);
+  const links = layout === "links" ? parseLinks(data.links, filename) : undefined;
   return {
     slug,
     title: String(data.title),
@@ -60,13 +69,39 @@ export function parsePostSource(filename: string, raw: string): Post {
     draft: Boolean(data.draft),
     layout,
     content,
+    ...(links ? { links } : {}),
   };
 }
 
 function parseLayout(value: unknown, filename: string): PostLayout {
   if (value == null || value === "article") return "article";
   if (value === "skills") return "skills";
-  throw new Error(`${filename} 的 layout 必须是 article 或 skills：${String(value)}`);
+  if (value === "links") return "links";
+  throw new Error(`${filename} 的 layout 必须是 article、skills 或 links：${String(value)}`);
+}
+
+function parseLinks(value: unknown, filename: string): LinkItem[] {
+  if (!Array.isArray(value) || value.length === 0) {
+    throw new Error(`${filename} 的 layout: links 要求非空 links 数组`);
+  }
+  return value.map((item, index) => {
+    if (item == null || typeof item !== "object") {
+      throw new Error(`${filename} 的 links[${index}] 必须是对象`);
+    }
+    const record = item as Record<string, unknown>;
+    const fields = ["name", "url", "description", "category"] as const;
+    for (const key of fields) {
+      if (typeof record[key] !== "string" || !String(record[key]).trim()) {
+        throw new Error(`${filename} 的 links[${index}].${key} 必须是非空字符串`);
+      }
+    }
+    return {
+      name: String(record.name).trim(),
+      url: String(record.url).trim(),
+      description: String(record.description).trim(),
+      category: String(record.category).trim(),
+    };
+  });
 }
 
 function listMdxFiles(): string[] {
