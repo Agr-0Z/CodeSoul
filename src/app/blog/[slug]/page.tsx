@@ -33,17 +33,19 @@ export default async function PostPage({ params }: { params: Params }) {
 
   return (
     <Shell>
-      <header className="page-header">
-        <p className="codesoul-subtitle-sm">{formatDate(post.date)}</p>
-        <h1>{post.title}</h1>
-        <div className="post-tags">
-          {post.tags.map((tag) => (
-            <span key={tag} className="tag codesoul-subtitle-xs">
-              {tag}
-            </span>
-          ))}
-        </div>
-      </header>
+      {post.layout !== "links" ? (
+        <header className="page-header">
+          <p className="codesoul-subtitle-sm">{formatDate(post.date)}</p>
+          <h1>{post.title}</h1>
+          <div className="post-tags">
+            {post.tags.map((tag) => (
+              <span key={tag} className="tag codesoul-subtitle-xs">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </header>
+      ) : null}
       {post.layout === "skills" ? (
         <SkillsCatalog post={post} skills={getAllAgentSkills({ includeDrafts: false })} />
       ) : post.layout === "links" ? (

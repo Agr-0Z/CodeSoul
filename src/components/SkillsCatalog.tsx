@@ -16,20 +16,6 @@ export function SkillsCatalog({ post, skills }: { post: Post; skills: AgentSkill
         </article>
       ) : null}
 
-      {skills.length > 1 ? (
-        <nav className="skill-index" aria-label="本页技能">
-          <ul className="post-tags">
-            {skills.map((skill) => (
-              <li key={skill.slug}>
-                <a href={`#skill-${skill.slug}`} className="tag codesoul-subtitle-xs">
-                  {skill.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      ) : null}
-
       {skills.length === 0 ? (
         <article className="glass-card">
           <p className="codesoul-subtitle-md">还没有公开的 skill。</p>
